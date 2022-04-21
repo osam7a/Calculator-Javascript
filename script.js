@@ -2,6 +2,7 @@ console.log("Javascript loaded.");
 
 // Variables
 var elements = document.getElementsByTagName("*"); // Get all elements in the document
+var evalutedRecently;
 
 // Functions
 
@@ -13,7 +14,12 @@ function appendText(text) {
         out.innerHTML = "";
         out.innerHTML += text;
     } else {
-        out.innerHTML += text;
+        if (evaluatedRecently === true) {
+            out.innerHTML = "";
+            out.innerHTML += text;
+            evaluatedRecently = false;
+        } else out.innerHTML += text;
+        
     }
 }
 
@@ -30,9 +36,8 @@ function evaluteEquation() {
     if (equation.innerHTML === "Result will be shown here...") {
         equation.innerHTML = "Invalid equation!";
     } else {
-        console.log(eval(equation.innerHTML));
         equation.innerHTML = eval(equation.innerHTML);
-        console.log(equation.innerHTML);
+        evaluatedRecently = true;
     }
 }
 
