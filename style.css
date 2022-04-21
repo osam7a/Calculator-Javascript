@@ -1,0 +1,11 @@
+/* Imports */
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
+/* Classes */ 
+.numpad {
+    width: 125px;
+    height: 100px;
+    font-size: 48px;
+}
