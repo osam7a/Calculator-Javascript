@@ -2,7 +2,7 @@ console.log("Javascript loaded.");
 
 // Variables
 var elements = document.getElementsByTagName("*"); // Get all elements in the document
-var evalutedRecently;
+var evaluatedRecently;
 
 // Functions
 
@@ -15,6 +15,12 @@ function appendText(text) {
         out.innerHTML += text;
     } else {
         if (evaluatedRecently === true) {
+            const operators = ['+', '-', '/', '*'];
+            if (operators.includes(text)) {
+                out.innerHTML += text;
+                evaluatedRecently = false;
+                return;
+            }
             out.innerHTML = "";
             out.innerHTML += text;
             evaluatedRecently = false;
@@ -28,6 +34,7 @@ function reset() {
     var out = document.getElementById('output');
     out.style.opacity = 0.2;
     out.innerHTML = "Result will be shown here...";
+    evaluatedRecently = false;
 }
 
 // Evaluate equation
@@ -41,9 +48,7 @@ function evaluteEquation() {
     }
 }
 
-// Calculator initialization
-function initializeCalculator(div) {
-    // Create button numbers from 1 to 10
+function addNumbers(div) {
     for (let i=0; i < 10; i++) {
         // Skip zero
         if (i === 0) {
@@ -59,7 +64,10 @@ function initializeCalculator(div) {
             div.appendChild(document.createElement("br"));
         }
     }
+}
 
+// Calculator initialization
+function initializeCalculator(div) {
     // Create elements
     const evaluate = document.createElement("button");
     const divide = document.createElement("button");
@@ -99,6 +107,7 @@ function initializeCalculator(div) {
     reset.style.height = '50px';
 
     // Append to main div
+    addNumbers(div);
     div.appendChild(divide);
     div.appendChild(zero);
     div.appendChild(evaluate);
