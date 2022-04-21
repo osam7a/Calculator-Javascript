@@ -30,8 +30,8 @@ function evaluteEquation() {
     if (equation.innerHTML === "Result will be shown here...") {
         equation.innerHTML = "Invalid equation!";
     } else {
-        console.log(equation.innerHTML);
-        equation.innerHTML = toString(eval(equation.innerHTML));
+        console.log(eval(equation.innerHTML));
+        equation.innerHTML = eval(equation.innerHTML);
         console.log(equation.innerHTML);
     }
 }
